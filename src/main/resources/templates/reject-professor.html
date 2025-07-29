@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reject Professor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Reject Professor</h2>
+    <form action="/admin/professor/reject" method="post">
+        <input type="hidden" name="email" th:value="${email}" />
+
+        <div class="mb-3">
+            <label for="comment" class="form-label">Reason for Rejection:</label>
+            <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-danger">Submit</button>
+        <a href="/admin/professors" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

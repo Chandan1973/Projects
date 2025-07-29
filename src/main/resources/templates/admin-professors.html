@@ -1,0 +1,261 @@
+<!--<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - All Professors</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3e50;
+        }
+
+        .table {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background-color: #2d3e50;
+            color: white;
+        }
+
+        .btn-status {
+            font-size: 0.9rem;
+        }
+
+        .btn-accept {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>All Professors</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Professor Name</th>
+            <th>Email</th>
+            
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="professor : ${professors}">
+            <td th:text="${professor.professorname}"></td>
+            <td th:text="${professor.email}"></td>
+           
+            
+            <td>
+                <span th:text="${professor.status}" th:classappend="${professor.status == 'accept'} ? 'text-success' : 'text-danger'"></span>
+            </td>
+            <td>
+                <a th:href="@{'/admin/professor/accept/' + ${professor.email}}" class="btn btn-sm btn-accept">Accept</a>
+                <a th:href="@{'/admin/professor/reject/' + ${professor.email}}" class="btn btn-sm btn-reject">Reject</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - All Professors</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            padding-top: 60px;
+        }
+
+        .navbar {
+            background-color: #2d3e50;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .navbar .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2d3e50;
+            font-weight: 600;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        .table {
+            margin-bottom: 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table th {
+            background-color: #2d3e50;
+            color: #ffffff;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .btn-accept {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-accept:hover {
+            background-color: #218838;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background-color: #c82333;
+        }
+
+        .text-success {
+            font-weight: 500;
+        }
+
+        .text-danger {
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: #2d3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .table th, .table td {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar d-flex justify-content-between">
+    <div class="logo">Admin Dashboard</div>
+    <div>
+        <a class="nav-link d-inline" href="/" style="color: white;">Logout</a>
+    </div>
+</nav>
+
+<!-- ✅ Main Content -->
+<div class="container mt-5">
+    <h2>All Professors</h2>
+
+    <div class="card p-4">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Professor Name</th>
+                <th>Email</th>
+				<th>Comment</th>
+                <th>Status</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="professor : ${professors}">
+                <td th:text="${professor.professorname}"></td>
+                <td th:text="${professor.email}"></td>
+				
+				<td th:text="${professor.comment != null ? professor.comment : 'N/A'}"></td>
+                <td>
+                    <span th:text="${professor.status}"
+                          th:classappend="${professor.status} == 'accept' ? 'text-success' : ( ${professor.status} == 'reject' ? 'text-danger' : 'text-warning')">
+                    </span>
+                </td>
+				
+				
+			
+					
+				
+
+                <td style="text-align: center;">
+                    <a th:href="@{'/admin/professor/accept/' + ${professor.email}}" class="btn btn-sm btn-accept me-2">Accept</a>
+                    <a th:href="@{'/admin/professor/rejectform/' + ${professor.email}}" class="btn btn-sm btn-reject">Reject</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ✅ Footer -->
+<footer>
+    <p>&copy; 2025 LearnSphere. All Rights Reserved.</p>
+   
+</footer>
+
+</body>
+</html>

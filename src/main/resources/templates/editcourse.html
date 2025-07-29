@@ -1,0 +1,84 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Course</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">LearnSphere</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					
+					<li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+					
+					<li class="nav-item"><a href="/user/mycourse"
+						th:if="${isActive != null || isActive}" class="nav-link active">
+							logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Header -->
+	<header class="bg-light py-5 text-center">
+		<h1>Edit Course</h1>
+		<p class="text-muted">Fill in the details below to Edit your
+			course</p>
+	</header>
+
+	<!-- Form -->
+	<div class="container my-5">
+		<form th:action="@{/professor/editcourse/{id}(id=${id})}" method="post"
+			th:object="${courseById}" enctype="multipart/form-data">
+			<div class="mb-3" hidden>
+				<input
+					type="text" class="form-control" name="id" id="id"
+					th:field="*{id}">
+			</div>
+			<div class="mb-3">
+				<label for="courseName" class="form-label">Course Name</label> <input
+					type="text" class="form-control" name="coursename" id="courseName"
+					th:field="*{coursename}">
+			</div>
+			<div class="mb-3">
+				<label for="courseDescription" class="form-label">Description</label>
+				<textarea class="form-control" id="courseDescription"
+					name="description" rows="4" th:field="*{description}"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="youtubeLink" class="form-label">Website Link</label> <input
+					type="url" class="form-control" id="youtubeurl" name="youtubeurl"
+					th:field="*{youtubeurl}">
+			</div>
+				<div class="mb-3">
+				<label for="youtubeLink" class="form-label">Image </label>
+				<!--  <input type="url" class="form-control" id="imageurl" name="imageurl" placeholder="Enter Thumbnail  link"> -->
+				<input type="file" name="image" accept="image/*"
+					class="form-control-file" >
+			</div>
+
+			<button type="submit" class="btn btn-primary">Edit Course</button>
+		</form>
+	</div>
+
+	<!-- Footer -->
+	<footer class="bg-dark text-light text-center py-3">
+		<p>&copy;LearnSphere. All rights reserved.</p>
+	</footer>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

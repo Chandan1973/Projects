@@ -1,0 +1,379 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Baloo Paaji 2";
+}
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+section .bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e8eff7, #dadceb);
+    z-index: 4;
+    filter: blur(10px);
+}
+section .bg span{
+    position: absolute;
+    border-radius: 50%;
+    z-index: 4;
+}
+section .bg span:nth-child(1){
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: #fadcde;
+}
+section .bg span:nth-child(2){
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    background: #c0d3fe;
+}
+section .bg span:nth-child(3){
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: #d7f0db;
+}
+section main{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(100px);
+    z-index: 11;
+}
+section main nav{
+    position: relative;
+    top: 40px;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    z-index: 100;
+}
+section main nav .logoBx{
+    position: relative;
+    width: calc(100% - 65%);
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+section main nav .logoBx img{
+    position: absolute;
+    left: 70px;
+    width: 70px;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+section main nav .menu{
+    position: relative;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(45deg, #6060d8, #777ae3, #8f94ef);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    overflow: hidden;
+}
+section main nav .menu ul{
+    position: relative;
+    width: calc(100% - 30%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+section main nav .menu ul li{
+    position: relative;
+    left: 50px;
+    width: calc(100% / 4);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+}
+section main nav .menu ul li a{
+    position: relative;
+    height: 70px;
+    text-decoration: none;
+    color: #e8eff7;
+    font-size: 1.5em;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+section main nav .menu ul li:nth-child(1) a::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #e8eff7;
+    border-radius: 10px;
+}
+section main nav .menu .searchBx{
+    position: relative;
+    width: calc(100% - 70%);
+    height: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+section main nav .menu .searchBx input{
+    position: absolute;
+    width: 90%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: #e8eff7;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 45px;
+    font-size: 1.2em;
+    color: #555;
+}
+section main nav .menu .searchBx i{
+    position: absolute;
+    top: 22px;
+    right: 50px;
+    font-size: 1.5em;
+    color: #8f94ef;
+    cursor: pointer;
+}
+section main .content{
+    position: relative;
+    top: 40px;
+    left: 75px;
+    width: 100%;
+    height: calc(100% - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+section main .content .text{
+    position: relative;
+    width: calc(100% - 40%);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+section main .content .text h5{
+    font-size: 3em;
+    color: #464646;
+    text-transform: capitalize;
+    line-height: 65px;
+    font-weight: 500;
+}
+section main .content .text h2{
+    font-size: 5.5em;
+    line-height: 60px;
+    color: #6060d8;
+}
+section main .content .text h2 span{
+    color: #464646;
+    font-size: 0.75em;
+}
+section main .content .text p{
+    width: 500px;
+    margin-top: 20px;
+    color: #555;
+    font-size: 1.1em;
+    line-height: 25px;
+}
+section main .content .text .btnBx{
+    position: relative;
+    width: 400px;
+    height: 45px;
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+}
+section main .content .text .btnBx button{
+    position: relative;
+    width: calc(100% / 2);
+    background: linear-gradient(45deg, #6060d8, #777ae3);
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    font-size: 1.3em;
+    color: #dadceb;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s ease;
+}
+section main .content .text .btnBx button:nth-child(2){
+    color: #555;
+    z-index: 1;
+}
+section main .content .text .btnBx button:nth-child(2)::before{
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #dadceb;
+    border-radius: 25px;
+    z-index: -1;
+}
+section main .content .text .btnBx button:active{
+    transform: scale(0.9);
+}
+section main .content .iconBx{
+    position: absolute;
+    bottom: 6%;
+    display: flex;
+}
+section main .content .iconBx a{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #6060d8;
+    text-decoration: none;
+    margin-right: 20px;
+    border-radius: 50%;
+    color: #6060d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section main .content .imgBx{
+    position: relative;
+    width: calc(100% - 75px);
+    height: 100%;
+    padding-right: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+section main .content .imgBx .img{
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+section main .content .imgBx .img img{
+    position: absolute;
+    left: -100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+section main .content .imgBx .rec{
+    position: absolute;
+    right: 10%;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+section main .content .imgBx .rec span{
+    position: relative;
+    width: var(--widHei);
+    height: var(--widHei);
+    background: var(--clr);
+}
+section main .content .imgBx .chatBx{
+    position: absolute;
+    bottom: 6%;
+    right: 12%;
+    width: 60px;
+    height: 60px;
+    background: #777ae3;
+    border-radius: 50%;
+    overflow: hidden;
+}
+section main .content .imgBx .chatBx::before{
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #6060d8;
+}
+section main .content .imgBx .chatBx a{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+section main .content .imgBx .chatBx a i{
+    font-size: 2.2em;
+    color: #e8eff7;
+}
+section main .triangle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+section main .triangle span{
+    position: absolute;
+    stroke-width: 60;
+    z-index: 10;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, .2));
+}
+section main .triangle span:nth-child(1){
+    top: -18%;
+    left: 9%;
+    fill: #c0d3fe;
+    stroke: #c0d3fe;
+    transform: rotate(10deg) scale(0.5);
+}
+section main .triangle span:nth-child(2){
+    bottom: -17%;
+    left: 25%;
+    fill: #fadcde;
+    stroke: #fadcde;
+    transform: rotate(10deg) scale(0.5);
+}
+section main .triangle span:nth-child(3){
+    bottom: 17%;
+    left: 35%;
+    fill: #d7f0db;
+    stroke: #d7f0db;
+    transform: rotate(55deg) scale(0.3);
+}
+section main .triangle span:nth-child(4){
+    bottom: -20%;
+    right: 0;
+    fill: #ccdcfd;
+    stroke: #ccdcfd;
+    transform: rotate(-15deg) scale(1);
+}
+section main .triangle span:nth-child(5){
+    bottom: 0;
+    top: 38%;
+    right: 24%;
+    fill: #e4f4e9;
+    stroke: #e4f4e9;
+    transform: rotate(20deg) scale(1.5);
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - All Courses</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            padding-top: 60px;
+        }
+
+        .navbar {
+            background-color: #2d3e50;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .navbar .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #2d3e50;
+        }
+
+        .card {
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        table th {
+            background-color: #2d3e50;
+            color: white;
+        }
+
+        .btn-danger {
+            font-size: 0.85rem;
+        }
+
+        footer {
+            background-color: #2d3e50;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<nav class="navbar d-flex justify-content-between">
+    <div class="logo">Admin Dashboard</div>
+    <div>
+        <a class="nav-link d-inline" href="/" style="color: white;">Logout</a>
+    </div>
+</nav>
+
+<!-- ✅ Main Content -->
+<div class="container mt-5">
+    <h2>All Courses</h2>
+    <div class="card">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Total Enrolled</th>
+                    <th>Enrolled Students</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.id}"></td>
+                    <td th:text="${course.coursename}"></td>
+
+                    <!-- Count -->
+                    <td th:text="${course.enrollments != null ? course.enrollments.size() : 0}"></td>
+
+                    <!-- List -->
+                    <td>
+                        <ul th:if="${course.enrollments != null && course.enrollments.size() > 0}">
+                            <li th:each="e : ${course.enrollments}" th:text="${e.enrolledusername} + ' (' + e.enrolleduseremail + ')'"></li>
+                        </ul>
+                        <span th:if="${course.enrollments == null || course.enrollments.size() == 0}">No students enrolled</span>
+                    </td>
+
+                    <!-- Delete Only -->
+                    <td>
+                        <a th:href="@{'/admin/deletecourse/' + ${course.id}}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ✅ Footer -->
+<footer>
+    <p>&copy; 2025 LearnSphere. All rights reserved.</p>
+   
+</footer>
+
+</body>
+</html>

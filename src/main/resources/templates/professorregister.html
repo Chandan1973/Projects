@@ -1,0 +1,154 @@
+<!--<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>LearnSphere Sign Up</title>
+      <link rel="stylesheet" href="login.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <div class="bg-img">
+         <div class="content">
+            <header>Professor <br>Register Form</header>
+            <form action="/professor/register" method="post">
+               <div class="field">
+                  <span class="fa fa-user"></span>
+                  <input type="text" name="username" required placeholder="User Name">
+               </div>
+               <div class="field space">
+                  <span class="fa fa-lock"></span>
+                  <input type="password" class="pass-key" name="password" required placeholder="Password">
+               </div>
+               <div class="field space">
+                  <span class="fa fa-envelope"></span>
+                  <input type="email" name="email" required placeholder="Email">
+               </div>
+                <div class="field space">
+                  <span class="fa fa-user"></span>
+                  <input type="text" name="degreecompleted" required placeholder="Degree">
+               </div>
+               
+                 <div class="field space">
+                  <span class="fa fa-users"></span>
+                  <input type="text" class="pass-key" name="gender" required placeholder="Gender">
+               </div>
+                 <div class="field space">
+                  <span class="fa fa-pen"></span>
+                  <input type="text" class="pass-key" name="profession" required placeholder="Profession">
+               </div>					
+
+          
+               <div class="field space">
+                  <input type="submit" value="REGISTER">
+               </div>
+            </form>
+             <div class="signup space">
+               Already have account?
+               <a href="/professor/login">Login Now</a>
+            </div>
+         </div>
+      </div>
+      <script>
+         const pass_field = document.querySelector('.pass-key');
+         const showBtn = document.querySelector('.show');
+         showBtn.addEventListener('click', function(){
+          if(pass_field.type === "password"){
+            pass_field.type = "text";
+            showBtn.textContent = "HIDE";
+            showBtn.style.color = "#3498db";
+          }else{
+            pass_field.type = "password";
+            showBtn.textContent = "SHOW";
+            showBtn.style.color = "#222";
+          }
+         });
+      </script>
+   </body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>LearnSphere - Professor Register</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <div class="bg-img">
+    <div class="content">
+      <header>Professor<br>Register Form</header>
+      <form action="/professor/register" method="post">
+        
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input type="text" name="professorname" required placeholder="Full Name">
+        </div>
+
+        <div class="field space">
+          <span class="fa fa-envelope"></span>
+          <input type="email" name="email" required placeholder="Email">
+        </div>
+
+		<!-- Degree Completed -->
+		<div class="field space">
+		    <span class="fa fa-user"></span>
+		    <input type="text" name="degreecompleted" required placeholder="Degree (B.Tech, M.Tech, PhD, MSc)">
+		    <span class="info" title="Allowed Degrees: B.Tech, M.Tech, PhD, MSc">&#9432;</span>
+		</div>
+
+		<!-- Experience Field -->
+		<div class="field space">
+		    <span class="fa fa-briefcase"></span>
+		    <input type="number" name="experience" required min="2" placeholder="Experience (Min 2 years)">
+		</div>
+
+        
+
+        <div class="field space">
+          <span class="fa fa-phone"></span>
+          <input type="text" name="mobile" required placeholder="Mobile Number">
+        </div>
+
+        <div class="field space">
+          <span class="fa fa-venus-mars"></span>
+          <input type="text" name="gender" required placeholder="Gender">
+        </div>
+
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input type="password" name="password" class="pass-key" required placeholder="Password">
+          <span class="show">SHOW</span>
+        </div>
+
+        <div class="field space">
+          <input type="submit" value="REGISTER">
+        </div>
+      </form>
+
+      <div class="signup space">
+        Already have an account?
+        <a href="/professor/login">Login Now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pass_field = document.querySelector('.pass-key');
+    const showBtn = document.querySelector('.show');
+    showBtn.addEventListener('click', function() {
+      if (pass_field.type === "password") {
+        pass_field.type = "text";
+        showBtn.textContent = "HIDE";
+        showBtn.style.color = "#3498db";
+      } else {
+        pass_field.type = "password";
+        showBtn.textContent = "SHOW";
+        showBtn.style.color = "#222";
+      }
+    });
+  </script>
+</body>
+</html>

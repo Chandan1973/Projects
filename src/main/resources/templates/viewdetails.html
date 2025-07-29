@@ -1,0 +1,547 @@
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Details</title>
+    <link rel="stylesheet" href="/student/dashboard.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" 
+            crossorigin="anonymous"></script>
+    <style>
+        /* Global Font Family */
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+          
+            background-size: cover;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section h1 {
+            font-size: 40px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Adding shadow for better readability */
+        }
+        .hero-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Course Details Section */
+        #course-details {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        #course-details h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        #course-details p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Videos Section */
+        .videos-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .videos-section h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .videos-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .video-card {
+            flex: 1 1 calc(33.33% - 20px);
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        .video-card video {
+            max-width: 100%;
+            height: 150px;
+            border-radius: 5px;
+        }
+        .video-card h4 {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .quiz-section h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #007bff;
+        }
+        .quiz-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+            color: #555;
+        }
+        .quiz-section a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .quiz-section a:hover {
+            background: #0056b3;
+        }
+
+        /* YouTube Section */
+        .youtube-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .youtube-section h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ff0000;
+        }
+        .youtube-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+            color: #555;
+        }
+        .youtube-section a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff0000;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .youtube-section a i {
+            margin-right: 8px;
+        }
+
+     
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .video-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+     Navigation 
+    <nav>
+        <img src="/uploads/learnsphere-logo.png" alt="Website logo" />
+        <div class="navigation">
+            <ul>
+                <i id="menu-close" class="fa-sharp fa-regular fa-circle-xmark"></i>
+                <li><a href="/user/dashboard">Home</a></li>
+                
+                <li><a href="/user/mycourse" th:if="${isActive}">My Courses</a></li>
+             
+                <li><a href="/user/logout" th:if="${isActive}">Logout</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+<br/><br/><br/>
+     Hero Section (Added) 
+    <section class="hero-section">     
+    </section>
+
+     Course Details Section 
+    <section id="course-details">
+        <h1 th:text="${course.coursename}">Course Name</h1>
+        <p>Welcome to the course! Dive into exciting lessons and interactive content that will enhance your learning experience.</p>
+        
+        <div class="details-container">
+
+             Videos Section 
+            <div class="videos-section">
+                <h2>Uploaded Videos</h2>
+                <p>Explore the videos uploaded for this course. Watch and learn at your own pace!</p>
+                <div class="videos-list" th:each="video : ${videolist}">
+                    <div class="video-card">
+                        <h4 th:text="title">Video Title</h4> 
+                        <video controls>
+                            <source th:src="@{/uploads/} + ${video.directory}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+             Quiz Section 
+            <div class="quiz-section">
+                <h2>Take Quiz Battle</h2>
+                <p>Challenge yourself with a quiz battle to test your knowledge on the course material.</p>
+                <a th:href="'/user/quiz/start?courseId=' + ${course.id}" class="btn">Start Quiz</a>
+            </div>
+
+             YouTube Section 
+            <div class="youtube-section">
+                <h2>Watch on YouTube</h2>
+                <p>For additional content, you can explore related resources and videos on YouTube.</p>
+                <a th:href="${course.youtubeurl}" target="_blank">
+                    <i class="fa-brands fa-youtube"></i> Watch Now
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+     Footer 
+    <footer>
+        <div class="footer-col">
+            <h3>eLearning</h3>
+            <li><a href="#">Home</a></li>
+            <li><a href="#features">About us</a></li>
+            <li><a href="#course">Courses</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </div>
+        <div class="footer-col">
+            <h3>Resources</h3>
+            <li><a href="#course">Web Development</a></li>
+            <li><a href="#course">App Development</a></li>
+            <li><a href="#course">Data Science</a></li>
+            <li><a href="#course">Cloud Computing</a></li>
+        </div>
+        <div class="footer-col">
+            <h3>Follow us</h3>
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>LinkedIn</li>
+            <li>GitHub</li>
+        </div>
+        <div class="copyright">
+            <p>Copyright ©2023 All rights reserved To LearnSphere</p>
+            <div class="social">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $("#menu-btn").click(function() {
+            $("nav .navigation ul").addClass("active");
+        });
+        $("#menu-close").click(function() {
+            $("nav .navigation ul").removeClass("active");
+        });
+    </script>
+</body>
+</html>
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Details | LearnSphere</title>
+  <link rel="stylesheet" href="/student/dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #fdfdfd, #f5f8ff);
+      color: #333;
+    }
+
+    nav {
+      background-color: #000;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f") center/cover;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      font-size: 42px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    section#course-details {
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    #course-details h1 {
+      font-size: 32px;
+      color: #1d3557;
+      margin-bottom: 10px;
+    }
+
+    #course-details p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: #555;
+      font-size: 18px;
+    }
+
+    .videos-section, .quiz-section, .youtube-section {
+      margin: 40px 0;
+    }
+
+    .videos-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .video-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      width: 100%;
+      transition: transform 0.3s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .video-card video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .video-card h4 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      color: #1d3557;
+    }
+
+    .quiz-section a,
+    .youtube-section a {
+      padding: 12px 24px;
+      background: #1d3557;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .quiz-section a:hover,
+    .youtube-section a:hover {
+      background: #457b9d;
+    }
+
+    footer {
+      background-color: #1d3557;
+      color: white;
+      padding: 40px 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-col {
+      margin: 20px 0;
+    }
+
+    footer .footer-col h3 {
+      margin-bottom: 15px;
+    }
+
+    footer .footer-col li {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    footer .footer-col li a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer .footer-col li a:hover {
+      color: white;
+    }
+
+    footer .social a {
+      margin-right: 15px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    footer .social a:hover {
+      color: #fbc531;
+    }
+
+    @media (max-width: 768px) {
+      .videos-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <img src="/uploads/learnsphere-logo.png" alt="LearnSphere Logo" />
+    <ul>
+      <li><a href="/user/dashboard">Home</a></li>
+      <li><a href="/user/mycourse">My Courses</a></li>
+      <li><a href="/user/logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1 th:text="${course.coursename}">Course Name</h1>
+    <p>Explore course content, interactive lessons, and videos curated for you.</p>
+  </section>
+
+  <!-- Course Details Section -->
+  <section id="course-details">
+    <div class="videos-section">
+      <h2>Uploaded Videos</h2>
+      <div class="videos-list" th:each="video : ${videolist}">
+        <div class="video-card">
+          <h4 th:text="${video.title}">Video Title</h4>
+          <video controls>
+            <source th:src="@{/uploads/} + ${video.directory}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="quiz-section">
+      <h2>Take Quiz Battle</h2>
+      <p>Challenge yourself and test what you've learned!</p>
+      <a th:href="'/user/quiz/start?courseId=' + ${course.id}">Start Quiz</a>
+    </div>
+
+    <!-- YouTube Section -->
+    <div class="youtube-section">
+      <h2>Watch on YouTube</h2>
+      <p>Explore related tutorials and resources on YouTube.</p>
+      <a th:href="${course.youtubeurl}" target="_blank">
+        <i class="fa-brands fa-youtube"></i> Watch Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-col">
+      <h3>LearnSphere</h3>
+      <li><a href="/user/dashboard">Home</a></li>
+      <li><a href="/user/mycourse">My Courses</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <li><a href="#">Web Development</a></li>
+      <li><a href="#">App Development</a></li>
+      <li><a href="#">AI & ML</a></li>
+      <li><a href="#">Cloud</a></li>
+    </div>
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <li><a href="https://www.instagram.com/komal_gupta4227" target="_blank">Instagram</a></li>
+      <li><a href="mailto:komalshivhare485@gmail.com">Gmail</a></li>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/komal_gupta4227" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="mailto:komalshivhare485@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>External Courses</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .course-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+        }
+        .course-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .course-description {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .course-price {
+            margin-top: 12px;
+            font-weight: bold;
+            color: #2a9d8f;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Trending External Courses</h1>
+
+    <div class="course-container">
+        <div th:each="course : ${externalCourses}" class="course-card">
+            <div class="course-title" th:text="${course.title}">Course Title</div>
+            <div class="course-description" th:text="${course.description}">Course description goes here...</div>
+           
+        </div>
+    </div>
+</body>
+</html>

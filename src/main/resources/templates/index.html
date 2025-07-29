@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform - Login</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Welcome to LearnSphere </h1>
+            <p>Select your role to log in:</p>
+            
+            <div class="button-container">
+                <button class="role-btn instructor-btn" onclick="redirectTo('instructor')">Login as Professor</button>
+                <button class="role-btn student-btn" onclick="redirectTo('student')">Login as Student</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        function redirectTo(role) {
+            if (role === 'instructor') {
+                window.location.href = '/professor/login';
+            } else if (role === 'student') {
+                window.location.href = '/student/login';
+            }
+        }
+    </script>
+</body>
+</html>

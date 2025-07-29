@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #2d3e50;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 2rem;
+            background-color: #2d3e50;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color:#2d3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 2rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            margin-bottom: 1rem;
+        }
+
+        .video-card video {
+            width: 100%;
+            max-height: 400px;
+        }
+
+        .video-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-form input[type="file"] {
+            margin-bottom: 1rem;
+        }
+
+        .btn-upload {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-upload:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="logo">Professor Dashboard</h1>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="/professor/addcourse">Add Course</a></li>
+            <li><a href="/professor/enrolledcourse">Enrolled Students</a></li>
+            <li><a href="/professor/logout" th:if="${isActive != null || isActive}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Professor Dashboard</h1>
+        <p>Manage your courses, view enrolled students, and more!</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <!-- Video Upload Section -->
+        <section id="upload" class="upload-section">
+            <h2>Upload Videos</h2>
+            <form method="post" enctype="multipart/form-data" th:action="@{/professor/uploadvideo/{id}(id=${courseId})}" class="upload-form">
+                <input type="file" name="file" accept="video/*" multiple required>
+                <button type="submit" class="btn-upload">Upload Videos</button>
+            </form>
+            <div class="message" th:if="${message}" th:utext="${message}"></div>
+        </section>
+
+        <!-- Video List Section -->
+        <section id="videos" class="video-section">
+            <h2>Uploaded Videos</h2>
+            <div class="video-list">
+                <!-- List of videos -->
+                <div th:each="video : ${videos}" class="video-card">
+                    <video th:src="@{/videos/} + ${video}" controls></video>
+                    <p th:text="${video}"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Professor Dashboard. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

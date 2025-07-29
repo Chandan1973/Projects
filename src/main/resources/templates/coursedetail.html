@@ -1,0 +1,266 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2d3e50;
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-links li a:hover {
+            color: #d1d8e0;
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 3rem;
+        }
+
+        .main-content h2 {
+            color: #003366;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Button Styles */
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            margin-right: 15px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #28a745;
+        }
+
+        .btn-secondary:hover {
+            background-color: #218838;
+        }
+
+        .courses-container {
+            margin-top: 2rem;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            margin-top: 30px;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .table th {
+            background-color: #2d3e50;
+            color: white;
+            font-weight: 600;
+        }
+
+        .table td {
+            color: #555;
+        }
+
+        .table-striped tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Course Card */
+        .course-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card h3 {
+            color: #003366;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-card p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #2d3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .courses-container {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .table {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Professor Dashboard</h1>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="/professor/addcourse">Add Course</a></li>
+            <li><a href="/professor/logout" th:if="${isActive != null || isActive}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2>Courses</h2>
+        <div>
+            <button type="button" class="btn-custom">
+                <a th:href="@{/professor/quizform/{id}(id=${courseId})}" style="color:white; text-decoration:none;">Add Quiz</a>
+            </button>
+            <button type="button" class="btn-custom">
+                <a th:href="@{/professor/uploadvideo/{id}(id=${courseId})}" style="color:white; text-decoration:none;">Upload Video</a>
+            </button>
+        </div>
+
+        <!-- Courses Table -->
+        <div class="courses-container">
+            <div class="container my-5">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Description</th>
+                                <th>Enrolled Student</th>
+                                <th>Enrolled Email</th>
+                                <th>Enrolled Date</th>
+                                <th>Course Type</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="enrollment : ${list}">
+                                <td th:text="${enrollment.Coursename}"></td>
+                                <td th:text="${enrollment.description}"></td>
+                                <td th:text="${enrollment.enrolledusername}"></td>
+                                <td th:text="${enrollment.enrolleduseremail}"></td>
+                                <td th:text="${enrollment.enrolleddate}"></td>
+                                <td>Online</td>
+                           
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Professor Dashboard. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

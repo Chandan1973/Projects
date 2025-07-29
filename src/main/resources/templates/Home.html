@@ -1,0 +1,373 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LearnSphere - Learn Smarter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: white;
+            animation: backgroundFade 10s infinite alternate;
+        }
+
+        @keyframes backgroundFade {
+            0% { background: linear-gradient(135deg, #1d3557, #457b9d); }
+            100% { background: linear-gradient(135deg, #457b9d, #1d3557); }
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(40px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 20px auto;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            100% { opacity: 1; }
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #f1faee;
+            color: #1d3557;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #a8dadc;
+        }
+
+        .courses-preview {
+            margin-top: 60px;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        .course-card {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<div class="container">
+       <h1>Welcome to LearnSphere</h1>
+       <p>One place to learn, teach, and grow — explore high-quality courses by professionals, for students.</p>
+       <a th:href="@{/choose-role}" class="btn btn-primary">Get Started</a>
+   </div>
+</body>
+</html>-->
+
+
+
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LearnSphere - Learn Smarter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: white;
+            animation: backgroundFade 10s infinite alternate;
+        }
+
+        @keyframes backgroundFade {
+            0% { background: linear-gradient(135deg, #1d3557, #457b9d); }
+            100% { background: linear-gradient(135deg, #457b9d, #1d3557); }
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(40px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 20px auto;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            100% { opacity: 1; }
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #f1faee;
+            color: #1d3557;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s;
+            text-decoration: none;
+            animation: fadeIn 2s ease forwards 2s;
+        }
+
+        .btn:hover {
+            background-color: #a8dadc;
+            transform: scale(1.05);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkleAnim 1.5s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     Sparkle container 
+    <div id="sparkle-container"></div>
+
+    <div class="container">
+        <h1>Welcome to LearnSphere</h1>
+        <p>One place to learn, teach, and grow — explore high-quality courses by professionals, for students.</p>
+        <a th:href="@{/choose-role}" class="btn">Get Started</a>
+    </div>
+
+    <script>
+        const sparkleContainer = document.getElementById('sparkle-container');
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+
+            sparkle.style.top = Math.random() * 100 + "vh";
+            sparkle.style.left = Math.random() * 100 + "vw";
+            sparkle.style.animationDuration = (1 + Math.random()).toFixed(2) + "s";
+
+            sparkleContainer.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }
+
+        // Create continuous sparkles
+        setInterval(createSparkle, 80);
+    </script>
+
+</body>
+</html>
+-->
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LearnSphere - Learn Smarter</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: white;
+            animation: backgroundFade 10s infinite alternate;
+        }
+
+        @keyframes backgroundFade {
+            0% { background: linear-gradient(135deg, #1d3557, #457b9d); }
+            100% { background: linear-gradient(135deg, #457b9d, #1d3557); }
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(40px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 20px auto;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            100% { opacity: 1; }
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            background-color: #f1faee;
+            color: #1d3557;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s;
+            text-decoration: none;
+            animation: fadeIn 2s ease forwards 2s;
+        }
+
+        .btn:hover {
+            background-color: #a8dadc;
+            transform: scale(1.05);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkleAnim 1.5s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sparkle container -->
+    <div id="sparkle-container"></div>
+
+    <div class="container">
+        <h1>Welcome to LearnSphere</h1>
+        <p>One place to learn, teach, and grow — explore high-quality courses by professionals, for students.</p>
+        <a th:href="@{/choose-role}" class="btn">Get Started</a>
+    </div>
+
+    <script>
+        const sparkleContainer = document.getElementById('sparkle-container');
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+
+            sparkle.style.top = Math.random() * 100 + "vh";
+            sparkle.style.left = Math.random() * 100 + "vw";
+            sparkle.style.animationDuration = (1 + Math.random()).toFixed(2) + "s";
+
+            sparkleContainer.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }
+
+        // Create continuous sparkles
+        setInterval(createSparkle, 80);
+    </script>
+
+</body>
+</html>

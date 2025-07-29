@@ -1,0 +1,220 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eLearning</title>
+<link rel="stylesheet" href="/student/dashboard.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	crossorigin="anonymous"></script>
+		<style>
+        /* Custom Styling */
+        body {
+            background-color: #f8f9fa; /* Light background */
+            font-family: Arial, sans-serif;
+        }
+        
+        .ques-box {
+            background-color: #ffffff; /* White background for questions */
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .option:hover {
+            background-color: #e2e6ea;
+        }
+        
+        .option input {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+        
+        .option p {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #333;
+        }
+        
+        .btn {
+            background-color: #007bff; /* Button color */
+            border-color: #007bff;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ques-box input[type="radio"] {
+            cursor: pointer;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .ques-box {
+                padding: 20px;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .option p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+	<!-- Navigation -->
+	<nav>
+		<img
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPRRxIPhqzUHkgH0HuisITLf1neuZ1yyBJVA&s"
+			alt="/Website logo" />
+		<div class="navigation">
+			<ul>
+				<i id="menu-close" class="fa-sharp fa-regular fa-circle-xmark"></i>
+				<li><a href="/user/dashboard">Home</a></li>
+				<li><a href="#features">About us</a></li>
+				<li><a href="/user/mycourse" th:if="${isActive != null || isActive}">My Courses</a></li>
+				<li><a href="#contact">Contact Us</a></li>
+				<li><a href="/user/logout" th:if="${isActive != null || isActive}">Logout</a></li>
+				
+			</ul>
+			<!--  <img
+            id="profile-btn"
+            src="http://cdn.shopify.com/s/files/1/0644/7058/1470/products/Candidateprofilemale_a9b265bf-eb7d-467e-a50f-7da2fb9d184b.jpg?v=1666929008"
+            alt="profile"
+          />-->
+			<img id="menu-btn"
+				src="https://cdn-icons-png.flaticon.com/512/56/56763.png"
+				alt="menu button" />
+		</div>
+	</nav>
+
+
+	
+<div class="container form-container">
+        <h1 class="bg-danger text-light text-center py-2 rounded mb-4">Only Select The Correct Answers</h1>
+        
+        <form action="submit" method="POST" th:object="${qForm}">
+            <div class="ques-box" th:each="ques, i: ${qForm.questions}">
+                <p class="title" th:text="${ques.title}"></p>
+                
+                <div class="option">
+                    <input type="radio" th:name="|questions[${i.index}].choose|" th:value="A" />
+                    <p th:text="${ques.optionA}"></p>
+                </div>
+                
+                <div class="option">
+                    <input type="radio" th:name="|questions[${i.index}].choose|" th:value="B" />
+                    <p th:text="${ques.optionB}"></p>
+                </div>
+                
+                <div class="option">
+                    <input type="radio" th:name="|questions[${i.index}].choose|" th:value="C" />
+                    <p th:text="${ques.optionC}"></p>
+                </div>
+                
+                <div class="option">
+                    <input type="radio" th:name="|questions[${i.index}].choose|" th:value="D" />
+                    <p th:text="${ques.optionD}"></p>
+                </div>
+                
+                <input type="hidden" th:name="|questions[${i.index}].id|" th:value="${ques.id}" />
+                <input type="hidden" th:name="|questions[${i.index}].title|" th:value="${ques.title}" />
+                <input type="hidden" th:name="|questions[${i.index}].ans|" th:value="${ques.ans}" />
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit Answer</button>
+        </form>
+    </div>
+<br/><br/>
+<br/><br/>
+	
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer-col">
+			<h3>eLearning</h3>
+			<li><a href="#">Home</a></li>
+			<li><a href="#features">About us</a></li>
+			<li><a href="#course">Courses</a></li>
+			<li><a href="#community">Community</a></li>
+			<li><a href="#contact">Contact Us</a></li>
+		</div>
+
+		<div class="footer-col">
+			<h3>Resources</h3>
+			<li><a href="#course">Web Development</a></li>
+			<li><a href="#course">App Development</a></li>
+			<li><a href="#course">Data Science</a></li>
+			<li><a href="#course">Clound Computing</a></li>
+		</div>
+
+		<div class="footer-col">
+			<h3>Follow us</h3>
+			<li>Instagram</li>
+			<li>Facebook</li>
+			<li>Linkedin</li>
+			<li>Github</li>
+		</div>
+
+
+
+		<div class="copyright">
+			<p>Copyright ©2025 All rights reserved TO Code Academy</p>
+			<div class="social">
+				<i class="fa-brands fa-facebook-f"></i> <i
+					class="fa-brands fa-instagram"></i> <i
+					class="fa-brands fa-linkedin-in"></i>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		$("#menu-btn").click(function() {
+			$("nav .navigation ul").addClass("active");
+		});
+		$("#menu-close").click(function() {
+			$("nav .navigation ul").removeClass("active");
+		});
+	</script>
+</body>
+</html>
